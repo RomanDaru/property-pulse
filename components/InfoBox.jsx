@@ -1,9 +1,9 @@
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
 
 const InfoBox = ({
   heading,
-  backgroundColor = 'bg-gray-100',
+  backgroundColor = "bg-gray-100",
   buttonInfo = {},
   children,
 }) => {
