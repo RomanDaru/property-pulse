@@ -13,10 +13,8 @@ const InfoBoxes = () => {
               backgroundColor: 'bg-black',
               link: '/properties',
             }}>
-            <p>
-              Find your dream rental property. Bookmark properties and contact
-              owners.
-            </p>
+            Find your dream rental property. Bookmark properties and contact
+            owners.
           </InfoBox>
           <InfoBox
             heading='For Property Owners'
@@ -26,10 +24,8 @@ const InfoBoxes = () => {
               backgroundColor: 'bg-blue-700',
               link: '/properties/add',
             }}>
-            <p>
-              List your properties and reach potential tenants. Rent as an
-              airbnb or long term.
-            </p>
+            List your properties and reach potential tenants. Rent as an airbnb
+            or long term.
           </InfoBox>
         </div>
       </div>
