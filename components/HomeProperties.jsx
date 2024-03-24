@@ -1,20 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import PropertyCard from "@/components/PropertyCard";
-
-async function fetchProperties() {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_DOMAIN}/properties`);
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch data");
-    }
-
-    return res.json();
-  } catch (error) {
-    console.log(error);
-  }
-}
+import { fetchProperties } from "@/utils/requests";
 
 const HomeProperties = async () => {
   const properties = await fetchProperties();
@@ -41,7 +28,7 @@ const HomeProperties = async () => {
           </div>
         </div>
       </section>
-      <section className='m-auto max-w-lg my-10 px-6'>
+      <section className='m-auto max-w-lg my-12 px-6'>
         <Link
           href='/properties'
           className='block bg-blue-700 text-white text-center py-4 px-6 rounded-xl hover:bg-blue-800'>
