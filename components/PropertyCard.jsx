@@ -21,6 +21,26 @@ const PropertyCard = ({ property }) => {
       return `${rates.nightly.toLocaleString()}/night`;
     }
   };
+
+  const getStayLength = () => {
+    const rates = property.rates;
+
+    const capitalizeFirstLetter = (string) => {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    };
+
+    return (
+      <>
+        {Object.entries(rates).map(([type]) => (
+          <p key={type}>
+            <FaMoneyBill className='inline mr-2' />
+            {capitalizeFirstLetter(type)}
+          </p>
+        ))}
+      </>
+    );
+  };
+
   return (
     <div className='rounded-xl shadow-md relative'>
       <Image
@@ -57,12 +77,7 @@ const PropertyCard = ({ property }) => {
         </div>
 
         <div className='flex justify-center gap-4 text-green-900 text-sm mb-4'>
-          <p>
-            <FaMoneyBill className='inline mr-2' /> Weekly
-          </p>
-          <p>
-            <FaMoneyBill className='inline mr-2' /> Monthly
-          </p>
+          {getStayLength()}
         </div>
 
         <div className='border border-gray-100 mb-5'></div>
