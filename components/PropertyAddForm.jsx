@@ -5,28 +5,28 @@ import React, { useEffect, useState } from "react";
 const PropertyAddForm = () => {
   const [mounted, setMounted] = useState(false);
   const [fields, setFields] = useState({
-    type: "",
-    name: "",
-    description: "",
+    type: "Apartment",
+    name: "Test 1",
+    description: "Test 1 Desc",
     location: {
-      street: "",
-      city: "",
-      state: "",
-      zipcode: "",
+      street: "Test Street",
+      city: "Test City",
+      state: "Test State",
+      zipcode: "999555",
     },
-    beds: "",
-    baths: "",
-    square_feet: "",
-    amenities: [],
+    beds: "3",
+    baths: "2",
+    square_feet: "1500",
+    amenities: ["Wifi", "Free Parking"],
     rates: {
-      weekly: "",
-      monthly: "",
+      weekly: "400",
+      monthly: "8000",
       nightly: "",
     },
     seller_info: {
-      name: "",
-      email: "",
-      phone: "",
+      name: "Ivan",
+      email: "test@test.test",
+      phone: "555-555-5559",
     },
     images: [],
   });
@@ -504,7 +504,7 @@ const PropertyAddForm = () => {
           <input
             type='text'
             id='seller_name'
-            name='seller_info.name.'
+            name='seller_info.name'
             className='border rounded w-full py-2 px-3'
             placeholder='Name'
             value={fields.seller_info.name}

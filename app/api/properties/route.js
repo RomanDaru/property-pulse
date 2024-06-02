@@ -44,10 +44,10 @@ export const POST = async (request) => {
       name: formData.get("name"),
       description: formData.get("description"),
       location: {
-        street: formData.get("street"),
-        city: formData.get("city"),
-        state: formData.get("state"),
-        zipcode: formData.get("zipcode"),
+        street: formData.get("location.street"),
+        city: formData.get("location.city"),
+        state: formData.get("location.state"),
+        zipcode: formData.get("location.zipcode"),
       },
       beds: formData.get("beds"),
       baths: formData.get("baths"),
@@ -64,12 +64,19 @@ export const POST = async (request) => {
         phone: formData.get("seller_info.phone"),
       },
       owner: userId,
-      images,
+      // images,
     };
 
-    return new Response(JSON.stringify({ message: "Success" }), {
-      status: 200,
-    });
+    const newProperty = new Property(propertyData);
+    await newProperty.save();
+
+    return Response.redirect(
+      `${process.env.NEXTAUTH_URL}/properties/${newProperty._id}`
+    );
+
+    // return new Response(JSON.stringify({ message: "Success" }), {
+    //   status: 200,
+    // });
   } catch (error) {
     return new Response("Failed to add property", { status: 500 });
   }
