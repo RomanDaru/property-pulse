@@ -35,8 +35,6 @@ const Navbar = () => {
     document.addEventListener("mousedown", closeOutsideClick);
   }, [closeOutsideClick]);
 
-  console.log(profileMenuRef);
-
   const pathName = usePathname();
 
   useEffect(() => {
