@@ -6,6 +6,9 @@ import Property from "@/models/Property";
 import { convertToSerializableObject } from "@/utils/convertToObject";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
+import BookmarkButton from "@/components/BookmarkButton";
+import ShareButtons from "@/components/ShareButtons";
+import PropertyContactForm from "@/components/PropertyContactForm";
 
 const PropertyPage = async ({ params }) => {
   await connectDB();
@@ -38,11 +41,11 @@ const PropertyPage = async ({ params }) => {
             <PropertyDetails property={property} />
 
             {/* <!-- Sidebar --> */}
-            {/* <aside className='space-y-4'>
+            <aside className='space-y-4'>
               <BookmarkButton property={property} />
               <ShareButtons property={property} />
               <PropertyContactForm property={property} />
-            </aside> */}
+            </aside>
           </div>
         </div>
       </section>
