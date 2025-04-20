@@ -1,47 +1,32 @@
-"use client";
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import Spinner from "@/components/Spinner";
 import PropertyCard from "@/components/PropertyCard";
+import connectDB from "@/config/database";
+import User from "@/models/User";
+import { getSessionUser } from "@/utils/getSessionUser";
 
-async function SavedBookmarks() {
-  const [properties, setProperties] = useState([]);
-  const [loading, setLoading] = useState(true);
+// NOTE: In a server component we can query the DB directly without the need
+// for making a fetch request to a API route handler.
 
-  useEffect(() => {
-    const fetchSavedProperties = async () => {
-      try {
-        const res = await fetch("/api/bookmarks");
+const SavedPropertiesPage = async () => {
+  await connectDB();
 
-        if (res.status === 200) {
-          const data = await res.json();
-          setProperties(data);
-        } else {
-          console.log(res.statusText);
-          toast.error("Failed to fetch saved properties");
-        }
-      } catch (error) {
-        console.log(error);
-        toast.error("Failed to fetch saved properties");
-      } finally {
-        setLoading(false);
-      }
-    };
+  const sessionUser = await getSessionUser();
 
-    fetchSavedProperties();
-  }, []);
+  const { userId } = sessionUser;
 
-  return loading ? (
-    <Spinner loading={loading} />
-  ) : (
+  // NOTE: here we can make one database query by using Model.populate
+  const { bookmarks } = await User.findById(userId)
+    .populate("bookmarks")
+    .lean();
+
+  return (
     <section className='px-4 py-6'>
       <div className='container-xl lg:container m-auto px-4 py-6'>
         <h1 className='text-2xl mb-4'>Saved Properties</h1>
-        {properties.length === 0 ? (
+        {bookmarks.length === 0 ? (
           <p>No saved properties</p>
         ) : (
           <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
-            {properties.map((property) => (
+            {bookmarks.map((property) => (
               <PropertyCard key={property._id} property={property} />
             ))}
           </div>
@@ -49,6 +34,5 @@ async function SavedBookmarks() {
       </div>
     </section>
   );
-}
-
-export default SavedBookmarks;
+};
+export default SavedPropertiesPage;
