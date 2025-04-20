@@ -1,9 +1,18 @@
 import React from "react";
 import PropertyCard from "@/components/PropertyCard";
+import connectDB from "@/config/database.js";
 import { fetchProperties } from "@/utils/requests";
+import Property from "@/models/Property";
+import Pagination from "@/components/Pagination";
 
-const PropertiesPage = async () => {
-  const properties = await fetchProperties();
+const PropertiesPage = async ({ searchParams: { page = 1, pageSize = 9 } }) => {
+  await connectDB();
+  const skip = (page - 1) * pageSize;
+
+  const total = await Property.countDocuments({});
+  const properties = await Property.find({}).skip(skip).limit(pageSize);
+
+  const showPagination = total > pageSize;
 
   //Sort properties by date
   properties.sort((a, b) => new Date(b.creatredAt) - new Date(a.creatredAt));
@@ -21,6 +30,13 @@ const PropertiesPage = async () => {
           </div>
         )}
       </div>
+      {showPagination && (
+        <Pagination
+          page={parseInt(page)}
+          pageSize={parseInt(pageSize)}
+          totalItems={total}
+        />
+      )}
     </section>
   );
 };
