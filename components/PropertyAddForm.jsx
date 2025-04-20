@@ -1,9 +1,25 @@
 "use client";
-import addproperty from "@/app/actions/addproperty";
+import { toast } from "react-toastify";
+
+// TODO: Give the user some feedback about the form submission before being
+// redirected
 
 const PropertyAddForm = () => {
+  // NOTE: checking for component is mounted is unnecessary so has been removed.
+  // We don't need state here as we are submitting the form with a form
+  // action to our API routes so we are not doing anthing with the local state.
+
+  const handleImageChange = (e) => {
+    // NOTE: Code here has changed to limit user to 4 images
+    // as per the instructions to the user
+    if (e.target.files.length > 4) {
+      e.target.value = "";
+      toast.error("You can select up to 4 images in total.");
+    }
+  };
+
   return (
-    <form action={addproperty}>
+    <form action='/api/properties' method='POST' encType='multipart/form-data'>
       <h2 className='text-3xl text-center font-semibold mb-6'>Add Property</h2>
 
       <div className='mb-4'>
@@ -18,7 +34,7 @@ const PropertyAddForm = () => {
           <option value='Apartment'>Apartment</option>
           <option value='Condo'>Condo</option>
           <option value='House'>House</option>
-          <option value='CabinOrCottage'>Cabin or Cottage</option>
+          <option value='Cabin Or Cottage'>Cabin or Cottage</option>
           <option value='Room'>Room</option>
           <option value='Studio'>Studio</option>
           <option value='Other'>Other</option>
@@ -144,7 +160,7 @@ const PropertyAddForm = () => {
               type='checkbox'
               id='amenity_kitchen'
               name='amenities'
-              value='Full kitchen'
+              value='Full Kitchen'
               className='mr-2'
             />
             <label htmlFor='amenity_kitchen'>Full kitchen</label>
@@ -336,7 +352,7 @@ const PropertyAddForm = () => {
         <input
           type='text'
           id='seller_name'
-          name='seller_info.name.'
+          name='seller_info.name'
           className='border rounded w-full py-2 px-3'
           placeholder='Name'
         />
@@ -382,6 +398,7 @@ const PropertyAddForm = () => {
           className='border rounded w-full py-2 px-3'
           accept='image/*'
           multiple
+          onChange={handleImageChange}
           required
         />
       </div>
@@ -396,5 +413,4 @@ const PropertyAddForm = () => {
     </form>
   );
 };
-
 export default PropertyAddForm;
