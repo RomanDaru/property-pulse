@@ -22,25 +22,6 @@ const PropertyCard = ({ property }) => {
     }
   };
 
-  const getStayLength = () => {
-    const rates = property.rates;
-
-    const capitalizeFirstLetter = (string) => {
-      return string.charAt(0).toUpperCase() + string.slice(1);
-    };
-
-    return (
-      <>
-        {Object.entries(rates).map(([type]) => (
-          <p key={type}>
-            <FaMoneyBill className='inline mr-2' />
-            {capitalizeFirstLetter(type)}
-          </p>
-        ))}
-      </>
-    );
-  };
-
   return (
     <div className='rounded-xl shadow-md relative'>
       <Link href={`/properties/${property._id}`}>
