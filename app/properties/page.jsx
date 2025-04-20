@@ -1,7 +1,6 @@
 import React from "react";
 import PropertyCard from "@/components/PropertyCard";
 import connectDB from "@/config/database.js";
-import { fetchProperties } from "@/utils/requests";
 import Property from "@/models/Property";
 import Pagination from "@/components/Pagination";
 
@@ -13,9 +12,6 @@ const PropertiesPage = async ({ searchParams: { page = 1, pageSize = 9 } }) => {
   const properties = await Property.find({}).skip(skip).limit(pageSize);
 
   const showPagination = total > pageSize;
-
-  //Sort properties by date
-  properties.sort((a, b) => new Date(b.creatredAt) - new Date(a.creatredAt));
 
   return (
     <section className='px-4 py-6'>

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
@@ -18,6 +18,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     const fetchUserProperties = async (userId) => {
+      console.log(userId);
       if (!userId) {
         return;
       }
