@@ -1,4 +1,3 @@
-import React from "react";
 import Link from "next/link";
 import PropertyCard from "@/components/PropertyCard";
 import { fetchProperties } from "@/utils/requests";
@@ -19,7 +18,7 @@ const HomeProperties = async () => {
           </h2>
           <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
             {recentProperties.length === 0 ? (
-              <p>No properties found!</p>
+              <p>No Properties Found</p>
             ) : (
               recentProperties.map((property) => (
                 <PropertyCard key={property._id} property={property} />
@@ -28,15 +27,15 @@ const HomeProperties = async () => {
           </div>
         </div>
       </section>
-      <section className='m-auto max-w-lg my-12 px-6'>
+
+      <section className='m-auto max-w-lg my-10 px-6'>
         <Link
           href='/properties'
-          className='block bg-blue-700 text-white text-center py-4 px-6 rounded-xl hover:bg-blue-800'>
+          className='block bg-black text-white text-center py-4 px-6 rounded-xl hover:bg-gray-700'>
           View All Properties
         </Link>
       </section>
     </>
   );
 };
-
 export default HomeProperties;
