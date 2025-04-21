@@ -1,7 +1,7 @@
 import PropertyEditForm from "@/components/PropertyEditForm";
 import connectDB from "@/config/database";
 import Property from "@/models/Property";
-import { convertToSerializeableObject } from "@/utils/convertToObject";
+import { convertToSerializeableObject } from "@/utils/convertToSerializeableObject";
 
 // NOTE: this can be a server component and we can query the DB for the property
 // directly and pass to our PropertyEditForm
