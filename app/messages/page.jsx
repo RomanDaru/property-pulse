@@ -4,7 +4,7 @@ import Message from "@/models/Message";
 // NOTE: Import the Property model so it is instantiated in our serverless
 // environment to be able to call Message.populate
 import "@/models/Property";
-import { convertToSerializeableObject } from "@/utils/convertToObject";
+import { convertToSerializeableObject } from "@/utils/convertToSerializeableObject";
 import { getSessionUser } from "@/utils/getSessionUser";
 
 // NOTE: This component has been changed to a server component so we can query
