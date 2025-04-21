@@ -1,7 +1,6 @@
 import PropertyAddForm from "@/components/PropertyAddForm";
-import React from "react";
 
-const PropertiesAddPage = () => {
+const PropertyAddPage = () => {
   return (
     <section className='bg-blue-50'>
       <div className='container m-auto max-w-2xl py-24'>
@@ -12,5 +11,4 @@ const PropertiesAddPage = () => {
     </section>
   );
 };
-
-export default PropertiesAddPage;
+export default PropertyAddPage;

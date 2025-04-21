@@ -9,6 +9,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import connectDB from "@/config/database";
 import Property from "@/models/Property";
 import { convertToSerializeableObject } from "@/utils/convertToSerializeableObject";
+import dynamic from "next/dynamic";
 
 const PropertyPage = async ({ params }) => {
   // NOTE: No need for making a fetch request here to our API routes, we can
