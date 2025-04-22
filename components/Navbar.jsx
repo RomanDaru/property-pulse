@@ -10,6 +10,7 @@ import { FaGoogle, FaAndroid } from "react-icons/fa";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import { get } from "mongoose";
 import UnreadMessageCount from "@/components/UnreadMessageCount";
+import ColorThemeButton from "@/components/ColorThemeButton";
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -106,6 +107,7 @@ const Navbar = () => {
                   } text-white hover:bg-blue-900 hover:text-white rounded-md px-3 py-2`}>
                   Properties
                 </Link>
+
                 {session && (
                   <Link
                     href='/properties/add'
@@ -133,6 +135,7 @@ const Navbar = () => {
                       <span>Login or Register</span>
                     </button>
                   ))}
+                <ColorThemeButton />
               </div>
             </div>
           )}
