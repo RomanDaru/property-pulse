@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 const ColorThemeButton = () => {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("");
 
   // On mount, load theme from localStorage (if exists)
   useEffect(() => {
