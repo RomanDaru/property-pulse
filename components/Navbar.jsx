@@ -51,7 +51,7 @@ const Navbar = () => {
   const [providers, setProviders] = useState(null);
 
   return (
-    <nav className='bg-blue-700 border-b border-blue-500'>
+    <nav className='bg-blue-700 border-b border-blue-500 dark:bg-gray-900 dark:border-gray-700'>
       <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
         <div className='relative flex h-20 items-center justify-between'>
           <div className='absolute inset-y-0 left-0 flex items-center md:hidden'>
@@ -96,15 +96,17 @@ const Navbar = () => {
                 <Link
                   href='/'
                   className={`${
-                    pathName === "/" ? "bg-blue-800" : ""
-                  } text-white hover:bg-blue-900 hover:text-white rounded-md px-3 py-2`}>
+                    pathName === "/" ? "bg-blue-800 dark:bg-gray-800" : ""
+                  } text-white hover:bg-blue-900 dark:hover:bg-gray-700 hover:text-white rounded-md px-3 py-2`}>
                   Home
                 </Link>
                 <Link
                   href='/properties'
                   className={`${
-                    pathName === "/properties" ? "bg-blue-800" : ""
-                  } text-white hover:bg-blue-900 hover:text-white rounded-md px-3 py-2`}>
+                    pathName === "/properties"
+                      ? "bg-blue-800 dark:bg-gray-800"
+                      : ""
+                  } text-white hover:bg-blue-900 dark:hover:bg-gray-700 hover:text-white rounded-md px-3 py-2`}>
                   Properties
                 </Link>
 
@@ -112,8 +114,10 @@ const Navbar = () => {
                   <Link
                     href='/properties/add'
                     className={`${
-                      pathName === "/properties/add" ? "bg-blue-800" : ""
-                    } text-white hover:bg-blue-900 hover:text-white rounded-md px-3 py-2`}>
+                      pathName === "/properties/add"
+                        ? "bg-blue-800 dark:bg-gray-800"
+                        : ""
+                    } text-white hover:bg-blue-900 dark:hover:bg-gray-700 hover:text-white rounded-md px-3 py-2`}>
                     Add Property
                   </Link>
                 )}
@@ -130,7 +134,7 @@ const Navbar = () => {
                     <button
                       key={index}
                       onClick={() => signIn(provider.id)}
-                      className='flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2'>
+                      className='flex items-center text-white bg-blue-800 hover:bg-blue-900 dark:bg-gray-800 dark:hover:bg-gray-700 hover:text-white rounded-md px-3 py-2'>
                       <FaGoogle className='text-white mr-2' />
                       <span>Login or Register</span>
                     </button>
