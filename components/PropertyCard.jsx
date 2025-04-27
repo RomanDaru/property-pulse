@@ -35,16 +35,16 @@ const PropertyCard = ({ property }) => {
         />
       </Link>
 
-      <div className='p-4'>
+      <div className='p-4 dark:bg-purple-300 rounded-b-xl'>
         <div className='text-left md:text-center lg:text-left mb-6'>
           <div className='text-gray-600'>{property.type}</div>
-          <h3 className='text-xl font-bold'>{property.name}</h3>
+          <h3 className='text-xl font-bold dark:text-black'>{property.name}</h3>
         </div>
-        <h3 className='absolute top-[10px] right-[10px] bg-white px-4 py-2 rounded-lg text-blue-500 font-bold text-right md:text-center lg:text-right'>
+        <h3 className='absolute top-[10px] right-[10px] bg-white px-4 py-2 rounded-lg text-blue-500 dark:text-purple-700 font-bold text-right md:text-center lg:text-right'>
           ${getRateDisplay()}
         </h3>
 
-        <div className='flex justify-center gap-4 text-gray-500 mb-4'>
+        <div className='flex justify-center gap-4 text-gray-500 dark:text-black mb-4'>
           <p>
             <FaBed className='inline mr-2' /> {property.beds} {""}
             <span className='md:hidden lg:inline'>Beds</span>
@@ -93,7 +93,7 @@ const PropertyCard = ({ property }) => {
           </div>
           <Link
             href={`/properties/${property._id}`}
-            className='h-[36px] bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-center text-sm'>
+            className='h-[36px] bg-blue-500 hover:bg-blue-600 dark:bg-purple-700 dark:hover:bg-purple-600 text-white px-4 py-2 rounded-lg text-center text-sm'>
             Details
           </Link>
         </div>

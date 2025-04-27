@@ -74,9 +74,9 @@ const ProfilePage = () => {
   };
 
   return (
-    <section className='bg-blue-50'>
+    <section className='bg-blue-50 dark:bg-black'>
       <div className='container m-auto py-24'>
-        <div className='bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0'>
+        <div className='bg-white dark:bg-purple-50 dark:text-black px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0'>
           <h1 className='text-3xl font-bold mb-4'>Your Profile</h1>
           <div className='flex flex-col md:flex-row'>
             <div className='md:w-1/4 mx-20 mt-10'>
@@ -106,7 +106,9 @@ const ProfilePage = () => {
                 <Spinner loading={loading} />
               ) : (
                 properties.map((property) => (
-                  <div key={property._id} className='mb-10'>
+                  <div
+                    key={property._id}
+                    className='mb-10 dark:bg-purple-200 rounded-lg p-4'>
                     <Link href={`/properties/${property._id}`}>
                       <Image
                         className='h-32 w-full rounded-md object-cover'

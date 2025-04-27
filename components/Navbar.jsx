@@ -236,6 +236,7 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
+              <ColorThemeButton />
             </div>
           )}
         </div>
@@ -279,6 +280,7 @@ const Navbar = () => {
                   <span>Login or Register</span>
                 </button>
               ))}
+            <ColorThemeButton />
           </div>
         </div>
       )}

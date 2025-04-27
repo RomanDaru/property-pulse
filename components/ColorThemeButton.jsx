@@ -23,7 +23,7 @@ const ColorThemeButton = () => {
   };
 
   return (
-    <div className='flex items-center gap-2 ml-8'>
+    <div className='flex items-center gap-2 ml-0 md:ml-4'>
       <button
         onClick={toggleTheme}
         className={`relative flex items-center w-16 h-9 rounded-full p-1 transition-colors duration-300 ${

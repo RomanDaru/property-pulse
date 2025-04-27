@@ -20,7 +20,7 @@ const MainLayout = ({ children }) => {
         <html lang='en'>
           <body>
             <Navbar />
-            <main>{children}</main>
+            <main className='dark:bg-black'>{children}</main>
             <Footer />
             <ToastContainer />
           </body>

@@ -20,7 +20,9 @@ const PropertyAddForm = () => {
 
   return (
     <form action='/api/properties' method='POST' encType='multipart/form-data'>
-      <h2 className='text-3xl text-center font-semibold mb-6'>Add Property</h2>
+      <h2 className='text-3xl text-center font-semibold mb-6 dark:text-black dark:drop-shadow-md'>
+        Add Property
+      </h2>
 
       <div className='mb-4'>
         <label htmlFor='type' className='block text-gray-700 font-bold mb-2'>
@@ -29,7 +31,7 @@ const PropertyAddForm = () => {
         <select
           id='type'
           name='type'
-          className='border rounded w-full py-2 px-3'
+          className='border rounded w-full py-2 px-3 dark:bg-white dark:text-black'
           required>
           <option value='Apartment'>Apartment</option>
           <option value='Condo'>Condo</option>
@@ -48,7 +50,7 @@ const PropertyAddForm = () => {
           type='text'
           id='name'
           name='name'
-          className='border rounded w-full py-2 px-3 mb-2'
+          className='border rounded w-full py-2 px-3 mb-2 dark:text-black'
           placeholder='eg. Beautiful Apartment In Miami'
           required
         />
@@ -56,31 +58,31 @@ const PropertyAddForm = () => {
       <div className='mb-4'>
         <label
           htmlFor='description'
-          className='block text-gray-700 font-bold mb-2'>
+          className='block text-gray-700 font-bold mb-2 '>
           Description
         </label>
         <textarea
           id='description'
           name='description'
-          className='border rounded w-full py-2 px-3'
+          className='border rounded w-full py-2 px-3 dark:text-black'
           rows='4'
           placeholder='Add an optional description of your property'></textarea>
       </div>
 
-      <div className='mb-4 bg-blue-50 p-4'>
+      <div className='mb-4 bg-blue-50 dark:bg-purple-50 p-4 rounded'>
         <label className='block text-gray-700 font-bold mb-2'>Location</label>
         <input
           type='text'
           id='street'
           name='location.street'
-          className='border rounded w-full py-2 px-3 mb-2'
+          className='border rounded w-full py-2 px-3 mb-2 dark:text-black'
           placeholder='Street'
         />
         <input
           type='text'
           id='city'
           name='location.city'
-          className='border rounded w-full py-2 px-3 mb-2'
+          className='border rounded w-full py-2 px-3 mb-2 dark:text-black'
           placeholder='City'
           required
         />
@@ -88,7 +90,7 @@ const PropertyAddForm = () => {
           type='text'
           id='state'
           name='location.state'
-          className='border rounded w-full py-2 px-3 mb-2'
+          className='border rounded w-full py-2 px-3 mb-2 dark:text-black'
           placeholder='State'
           required
         />
@@ -96,13 +98,13 @@ const PropertyAddForm = () => {
           type='text'
           id='zipcode'
           name='location.zipcode'
-          className='border rounded w-full py-2 px-3 mb-2'
+          className='border rounded w-full py-2 px-3 mb-2 dark:text-black'
           placeholder='Zipcode'
         />
       </div>
 
-      <div className='mb-4 flex flex-wrap'>
-        <div className='w-full sm:w-1/3 pr-2'>
+      <div className='mb-4 flex flex-wrap space-y-4 sm:space-y-0'>
+        <div className='w-full sm:w-1/3 px-2'>
           <label htmlFor='beds' className='block text-gray-700 font-bold mb-2'>
             Beds
           </label>
@@ -110,7 +112,7 @@ const PropertyAddForm = () => {
             type='number'
             id='beds'
             name='beds'
-            className='border rounded w-full py-2 px-3'
+            className='border rounded w-full py-2 px-3 dark:text-black'
             required
           />
         </div>
@@ -122,7 +124,7 @@ const PropertyAddForm = () => {
             type='number'
             id='baths'
             name='baths'
-            className='border rounded w-full py-2 px-3'
+            className='border rounded w-full py-2 px-3 dark:text-black'
             required
           />
         </div>
@@ -136,7 +138,7 @@ const PropertyAddForm = () => {
             type='number'
             id='square_feet'
             name='square_feet'
-            className='border rounded w-full py-2 px-3'
+            className='border rounded w-full py-2 px-3 dark:text-black'
             required
           />
         </div>
@@ -151,9 +153,11 @@ const PropertyAddForm = () => {
               id='amenity_wifi'
               name='amenities'
               value='Wifi'
-              className='mr-2'
+              className='mr-2 dark:accent-purple-700'
             />
-            <label htmlFor='amenity_wifi'>Wifi</label>
+            <label htmlFor='amenity_wifi' className='dark:text-black'>
+              Wifi
+            </label>
           </div>
           <div>
             <input
@@ -161,9 +165,11 @@ const PropertyAddForm = () => {
               id='amenity_kitchen'
               name='amenities'
               value='Full Kitchen'
-              className='mr-2'
+              className='mr-2 dark:accent-purple-700'
             />
-            <label htmlFor='amenity_kitchen'>Full kitchen</label>
+            <label htmlFor='amenity_kitchen' className='dark:text-black'>
+              Full kitchen
+            </label>
           </div>
           <div>
             <input
@@ -171,9 +177,11 @@ const PropertyAddForm = () => {
               id='amenity_washer_dryer'
               name='amenities'
               value='Washer & Dryer'
-              className='mr-2'
+              className='mr-2 dark:accent-purple-700'
             />
-            <label htmlFor='amenity_washer_dryer'>Washer & Dryer</label>
+            <label htmlFor='amenity_washer_dryer' className='dark:text-black'>
+              Washer & Dryer
+            </label>
           </div>
           <div>
             <input
@@ -181,9 +189,11 @@ const PropertyAddForm = () => {
               id='amenity_free_parking'
               name='amenities'
               value='Free Parking'
-              className='mr-2'
+              className='mr-2 dark:accent-purple-700'
             />
-            <label htmlFor='amenity_free_parking'>Free Parking</label>
+            <label htmlFor='amenity_free_parking' className='dark:text-black'>
+              Free Parking
+            </label>
           </div>
           <div>
             <input
@@ -191,9 +201,11 @@ const PropertyAddForm = () => {
               id='amenity_pool'
               name='amenities'
               value='Swimming Pool'
-              className='mr-2'
+              className='mr-2 dark:accent-purple-700'
             />
-            <label htmlFor='amenity_pool'>Swimming Pool</label>
+            <label htmlFor='amenity_pool' className='dark:text-black'>
+              Swimming Pool
+            </label>
           </div>
           <div>
             <input
@@ -201,9 +213,11 @@ const PropertyAddForm = () => {
               id='amenity_hot_tub'
               name='amenities'
               value='Hot Tub'
-              className='mr-2'
+              className='mr-2 dark:accent-purple-700'
             />
-            <label htmlFor='amenity_hot_tub'>Hot Tub</label>
+            <label htmlFor='amenity_hot_tub' className='dark:text-black'>
+              Hot Tub
+            </label>
           </div>
           <div>
             <input
@@ -211,9 +225,11 @@ const PropertyAddForm = () => {
               id='amenity_24_7_security'
               name='amenities'
               value='24/7 Security'
-              className='mr-2'
+              className='mr-2 dark:accent-purple-700'
             />
-            <label htmlFor='amenity_24_7_security'>24/7 Security</label>
+            <label htmlFor='amenity_24_7_security' className='dark:text-black'>
+              24/7 Security
+            </label>
           </div>
           <div>
             <input
@@ -221,10 +237,12 @@ const PropertyAddForm = () => {
               id='amenity_wheelchair_accessible'
               name='amenities'
               value='Wheelchair Accessible'
-              className='mr-2'
+              className='mr-2 dark:accent-purple-700'
             />
-            <label htmlFor='amenity_wheelchair_accessible'>
-              Wheelchair Accessible
+            <label
+              htmlFor='amenity_wheelchair_accessible'
+              className='dark:text-black'>
+              Wheelchair Access
             </label>
           </div>
           <div>
@@ -233,9 +251,13 @@ const PropertyAddForm = () => {
               id='amenity_elevator_access'
               name='amenities'
               value='Elevator Access'
-              className='mr-2'
+              className='mr-2 dark:accent-purple-700'
             />
-            <label htmlFor='amenity_elevator_access'>Elevator Access</label>
+            <label
+              htmlFor='amenity_elevator_access'
+              className='dark:text-black'>
+              Elevator Access
+            </label>
           </div>
           <div>
             <input
@@ -243,9 +265,11 @@ const PropertyAddForm = () => {
               id='amenity_dishwasher'
               name='amenities'
               value='Dishwasher'
-              className='mr-2'
+              className='mr-2 dark:accent-purple-700'
             />
-            <label htmlFor='amenity_dishwasher'>Dishwasher</label>
+            <label htmlFor='amenity_dishwasher' className='dark:text-black'>
+              Dishwasher
+            </label>
           </div>
           <div>
             <input
@@ -253,9 +277,11 @@ const PropertyAddForm = () => {
               id='amenity_gym_fitness_center'
               name='amenities'
               value='Gym/Fitness Center'
-              className='mr-2'
+              className='mr-2 dark:accent-purple-700'
             />
-            <label htmlFor='amenity_gym_fitness_center'>
+            <label
+              htmlFor='amenity_gym_fitness_center'
+              className='dark:text-black'>
               Gym/Fitness Center
             </label>
           </div>
@@ -265,9 +291,13 @@ const PropertyAddForm = () => {
               id='amenity_air_conditioning'
               name='amenities'
               value='Air Conditioning'
-              className='mr-2'
+              className='mr-2 dark:accent-purple-700'
             />
-            <label htmlFor='amenity_air_conditioning'>Air Conditioning</label>
+            <label
+              htmlFor='amenity_air_conditioning'
+              className='dark:text-black'>
+              Air Conditioning
+            </label>
           </div>
           <div>
             <input
@@ -275,9 +305,11 @@ const PropertyAddForm = () => {
               id='amenity_balcony_patio'
               name='amenities'
               value='Balcony/Patio'
-              className='mr-2'
+              className='mr-2 dark:accent-purple-700'
             />
-            <label htmlFor='amenity_balcony_patio'>Balcony/Patio</label>
+            <label htmlFor='amenity_balcony_patio' className='dark:text-black'>
+              Balcony/Patio
+            </label>
           </div>
           <div>
             <input
@@ -285,9 +317,11 @@ const PropertyAddForm = () => {
               id='amenity_smart_tv'
               name='amenities'
               value='Smart TV'
-              className='mr-2'
+              className='mr-2 dark:accent-purple-700'
             />
-            <label htmlFor='amenity_smart_tv'>Smart TV</label>
+            <label htmlFor='amenity_smart_tv' className='dark:text-black'>
+              Smart TV
+            </label>
           </div>
           <div>
             <input
@@ -295,49 +329,51 @@ const PropertyAddForm = () => {
               id='amenity_coffee_maker'
               name='amenities'
               value='Coffee Maker'
-              className='mr-2'
+              className='mr-2 dark:accent-purple-700'
             />
-            <label htmlFor='amenity_coffee_maker'>Coffee Maker</label>
+            <label htmlFor='amenity_coffee_maker' className='dark:text-black'>
+              Coffee Maker
+            </label>
           </div>
         </div>
       </div>
 
-      <div className='mb-4 bg-blue-50 p-4'>
+      <div className='mb-4 bg-blue-50 p-4 dark:bg-purple-50 rounded'>
         <label className='block text-gray-700 font-bold mb-2'>
           Rates (Leave blank if not applicable)
         </label>
         <div className='flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4'>
           <div className='flex items-center'>
-            <label htmlFor='weekly_rate' className='mr-2'>
+            <label htmlFor='weekly_rate' className='mr-2 dark:text-black'>
               Weekly
             </label>
             <input
               type='number'
               id='weekly_rate'
               name='rates.weekly'
-              className='border rounded w-full py-2 px-3'
+              className='border rounded w-full py-2 px-3 dark:text-black'
             />
           </div>
           <div className='flex items-center'>
-            <label htmlFor='monthly_rate' className='mr-2'>
+            <label htmlFor='monthly_rate' className='mr-2 dark:text-black'>
               Monthly
             </label>
             <input
               type='number'
               id='monthly_rate'
               name='rates.monthly'
-              className='border rounded w-full py-2 px-3'
+              className='border rounded w-full py-2 px-3 dark:text-black'
             />
           </div>
           <div className='flex items-center'>
-            <label htmlFor='nightly_rate' className='mr-2'>
+            <label htmlFor='nightly_rate' className='mr-2 dark:text-black'>
               Nightly
             </label>
             <input
               type='number'
               id='nightly_rate'
               name='rates.nightly'
-              className='border rounded w-full py-2 px-3'
+              className='border rounded w-full py-2 px-3 dark:text-black'
             />
           </div>
         </div>
@@ -353,7 +389,7 @@ const PropertyAddForm = () => {
           type='text'
           id='seller_name'
           name='seller_info.name'
-          className='border rounded w-full py-2 px-3'
+          className='border rounded w-full py-2 px-3 dark:text-black'
           placeholder='Name'
         />
       </div>
@@ -367,7 +403,7 @@ const PropertyAddForm = () => {
           type='email'
           id='seller_email'
           name='seller_info.email'
-          className='border rounded w-full py-2 px-3'
+          className='border rounded w-full py-2 px-3 dark:text-black'
           placeholder='Email address'
           required
         />
@@ -382,20 +418,29 @@ const PropertyAddForm = () => {
           type='tel'
           id='seller_phone'
           name='seller_info.phone'
-          className='border rounded w-full py-2 px-3'
+          className='border rounded w-full py-2 px-3 dark:text-black'
           placeholder='Phone'
         />
       </div>
 
-      <div className='mb-4'>
-        <label htmlFor='images' className='block text-gray-700 font-bold mb-2'>
+      <div className='mb-4 mt-8 border rounded p-4 bg-blue-50 dark:bg-purple-50'>
+        <label
+          htmlFor='images'
+          className='block text-gray-700 font-bold mb-2 text-center'>
           Images (Select up to 4 images)
         </label>
+
+        <label
+          htmlFor='images'
+          className='flex items-center justify-center bg-blue-500 hover:bg-blue-400 dark:bg-purple-700 dark:hover:bg-purple-800 text-white font-semibold py-2 px-4 rounded cursor-pointer'>
+          Upload Images
+        </label>
+
         <input
           type='file'
           id='images'
           name='images'
-          className='border rounded w-full py-2 px-3'
+          className='hidden'
           accept='image/*'
           multiple
           onChange={handleImageChange}
@@ -405,7 +450,7 @@ const PropertyAddForm = () => {
 
       <div>
         <button
-          className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline'
+          className='bg-blue-500 hover:bg-blue-600 dark:bg-purple-700 dark:hover:bg-purple-800 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4'
           type='submit'>
           Add Property
         </button>

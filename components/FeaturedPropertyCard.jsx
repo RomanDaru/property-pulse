@@ -52,12 +52,12 @@ const FeaturedPropertyCard = ({ property }) => {
         className='w-full h-auto rounded-t-xl md:rounded-tr-none md:rounded-l-xl md:w-2/5'
       />
       <div className='p-6'>
-        <h3 className='text-xl font-bold'>{property.name}</h3>
+        <h3 className='text-xl font-bold dark:text-black'>{property.name}</h3>
         <div className='text-gray-600 mb-4'>{property.type}</div>
-        <h3 className='absolute top-[10px] left-[10px] bg-white px-4 py-2 rounded-lg text-blue-500 font-bold text-right md:text-center lg:text-right'>
+        <h3 className='absolute top-[10px] left-[10px] bg-white px-4 py-2 rounded-lg text-blue-500 dark:text-purple-700 font-bold text-right md:text-center lg:text-right'>
           ${getRateDisplay()}
         </h3>
-        <div className='flex justify-center gap-4 text-gray-500 mb-4'>
+        <div className='flex justify-center gap-4 text-gray-500 dark:text-black mb-4'>
           <p>
             <FaBed className='inline-block mr-2' /> {property.beds}{" "}
             <span className='md:hidden lg:inline'>Beds</span>
