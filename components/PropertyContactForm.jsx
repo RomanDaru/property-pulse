@@ -24,7 +24,7 @@ const PropertyContactForm = ({ property }) => {
 
   return (
     session && (
-      <div className='bg-white p-6 rounded-lg shadow-md'>
+      <div className='bg-white dark:bg-purple-300 dark:text-black p-6 rounded-lg shadow-md'>
         <h3 className='text-xl font-bold mb-6'>Contact Property Manager</h3>
         <form action={formAction}>
           <input
