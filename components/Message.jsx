@@ -89,18 +89,25 @@ const Message = ({ message }) => {
           {new Date(message.createdAt).toLocaleString()}
         </li>
       </ul>
-      <button
-        onClick={handleReadClick}
-        className={`mt-4 mr-3 ${
-          isRead ? "bg-gray-300" : "bg-blue-500 text-white"
-        } py-1 px-3 rounded-md`}>
-        {isRead ? "Mark As New" : "Mark As Read"}
-      </button>
-      <button
-        onClick={handleDeleteClick}
-        className='mt-4 bg-red-500 text-white py-1 px-3 rounded-md'>
-        Delete
-      </button>
+      <div className='flex gap-4 mt-4'>
+        <button
+          onClick={handleReadClick}
+          className={` ${
+            isRead
+              ? "bg-gray-300 hover:bg-gray-400"
+              : "bg-blue-500 hover:bg-blue-600 text-white"
+          } py-1 px-3 rounded-md`}>
+          {isRead ? "Mark As New" : "Mark As Read"}
+        </button>
+        <button className=' bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-md'>
+          Reply
+        </button>
+        <button
+          onClick={handleDeleteClick}
+          className='bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded-md'>
+          Delete
+        </button>
+      </div>
     </div>
   );
 };
