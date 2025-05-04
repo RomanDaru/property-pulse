@@ -40,12 +40,16 @@ const MessageCard = ({ message }) => {
 
   return (
     <div className='relative bg-white p-4 rounded-md shadow-md border border-gray-200'>
-      {!isRead &&
-        !hasBeenReplied(
-          <div className='absolute top-2 right-2 bg-yellow-500 text-white px-2 py-1 rounded-md'>
-            New
-          </div>
-        )}
+      {!isRead && !message.hasReply && (
+        <div className='absolute top-2 right-2 bg-yellow-500 text-white px-2 py-1 rounded-md'>
+          New
+        </div>
+      )}
+      {message.hasReply && (
+        <div className='absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded-md'>
+          Replied
+        </div>
+      )}
       <h2 className='text-xl mb-4'>
         <span className='font-bold'>Property Inquiry:</span>{" "}
         {message.property.name}
@@ -66,7 +70,7 @@ const MessageCard = ({ message }) => {
           </a>
         </li>
         <li>
-          <strong>Recieved:</strong> {formattedDate}
+          <strong>Received:</strong> {formattedDate}
         </li>
       </ul>
       <div className='flex gap-4 mt-4'>

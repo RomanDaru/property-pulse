@@ -11,7 +11,10 @@ async function replyMessage(previousState, formData) {
     throw new Error("User ID is required");
   }
 
-  const { userId, name, email, phone: sessionPhone } = sessionUser;
+  const { userId } = sessionUser;
+  const { name, email } = sessionUser.user || {};
+
+  console.log("Session User ID:", sessionUser);
   const originalMessageId = formData.get("originalMessageId");
 
   if (!originalMessageId) {
@@ -35,7 +38,7 @@ async function replyMessage(previousState, formData) {
     property: originalMessage.property, // Same property
     name: name || "Property Owner", // Use form data or session data
     email: email || "No email provided", // Use form data or session data
-    phone: sessionPhone || "No phone provided",
+    phone: sessionUser.user?.Phone || "No phone provided",
     body: formData.get("body"), // The reply text
     isReply: true,
     replyTo: originalMessageId,
