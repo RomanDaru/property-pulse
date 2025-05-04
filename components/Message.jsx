@@ -26,7 +26,6 @@ function SubmitButton() {
 // --- End Submit Button Component ---
 
 const Message = ({ message }) => {
-  console.log("Message Prop:", message);
   const [isRead, setIsRead] = useState(message.read);
   const [isDeleted, setIsDeleted] = useState(false);
   const [isReplyOpen, setIsReplyOpen] = useState(false);
@@ -145,9 +144,9 @@ const Message = ({ message }) => {
           New
         </div>
       )}
-      {/* "Replied" badge - uses the 'hasBeenReplied' state now */}
+      {/* "Replied" badge - fix positioning to match MessageCard */}
       {hasBeenReplied && (
-        <div className='absolute top-2 right-14 bg-green-500 text-white px-2 py-1 rounded-md'>
+        <div className='absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded-md'>
           Replied
         </div>
       )}
