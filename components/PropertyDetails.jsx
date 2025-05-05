@@ -8,6 +8,7 @@ import {
   FaMapMarker,
 } from "react-icons/fa";
 import PropertyMap from "./PropertyMap";
+import PropertyViewsDisplay from "./PropertyViewsDisplay";
 
 const PropertyDetails = ({ property }) => {
   return (
@@ -21,6 +22,12 @@ const PropertyDetails = ({ property }) => {
             {property.location.street}, {property.location.city}{" "}
             {property.location.state}
           </p>
+          <div className='ml-auto'>
+            <PropertyViewsDisplay
+              views={property.views}
+              propertyId={property._id}
+            />
+          </div>
         </div>
 
         <h3 className='text-lg font-bold my-6 bg-gray-800 dark:bg-purple-800 text-white p-2'>
