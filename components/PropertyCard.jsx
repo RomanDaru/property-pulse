@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -7,9 +9,31 @@ import {
   FaRulerCombined,
   FaMoneyBill,
   FaMapMarker,
+  FaStar,
 } from "react-icons/fa";
 
 const PropertyCard = ({ property }) => {
+  const [averageRating, setAverageRating] = useState(0);
+  const [reviewCount, setReviewCount] = useState(0);
+
+  // Fetch property ratings
+  useEffect(() => {
+    const fetchRatings = async () => {
+      try {
+        const res = await fetch(`/api/properties/${property._id}/ratings`);
+        if (res.ok) {
+          const data = await res.json();
+          setAverageRating(data.averageRating || 0);
+          setReviewCount(data.reviewCount || 0);
+        }
+      } catch (error) {
+        console.error("Error fetching ratings:", error);
+      }
+    };
+
+    fetchRatings();
+  }, [property._id]);
+
   const getRateDisplay = () => {
     const { rates } = property;
 
@@ -20,6 +44,23 @@ const PropertyCard = ({ property }) => {
     } else if (rates.nightly) {
       return `${rates.nightly.toLocaleString()}/night`;
     }
+  };
+
+  // Render stars for rating
+  const renderStars = (rating) => {
+    return (
+      <div className='flex'>
+        {[1, 2, 3, 4, 5].map((star) => (
+          <FaStar
+            key={star}
+            className={
+              star <= Math.round(rating) ? "text-yellow-500" : "text-gray-300"
+            }
+            size={16}
+          />
+        ))}
+      </div>
+    );
   };
 
   return (
@@ -39,6 +80,20 @@ const PropertyCard = ({ property }) => {
         <div className='text-left md:text-center lg:text-left mb-6'>
           <div className='text-gray-600'>{property.type}</div>
           <h3 className='text-xl font-bold dark:text-black'>{property.name}</h3>
+          {/* Rating display */}
+          <div className='flex items-center mt-2 justify-start md:justify-center lg:justify-start'>
+            {averageRating > 0 ? (
+              <>
+                {renderStars(averageRating)}
+                <span className='text-gray-600 ml-2 text-sm'>
+                  ({averageRating.toFixed(1)}) · {reviewCount} review
+                  {reviewCount !== 1 ? "s" : ""}
+                </span>
+              </>
+            ) : (
+              <span className='text-gray-500 text-sm'>No reviews yet</span>
+            )}
+          </div>
         </div>
         <h3 className='absolute top-[10px] right-[10px] bg-white px-4 py-2 rounded-lg text-blue-500 dark:text-purple-700 font-bold text-right md:text-center lg:text-right'>
           ${getRateDisplay()}

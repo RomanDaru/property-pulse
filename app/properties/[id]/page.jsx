@@ -5,6 +5,7 @@ import PropertyImages from "@/components/PropertyImages";
 import BookmarkButton from "@/components/BookmarkButton";
 import PropertyContactForm from "@/components/PropertyContactForm";
 import ShareButtons from "@/components/ShareButtons";
+import PropertyReviews from "@/components/PropertyReviews";
 import { FaArrowLeft } from "react-icons/fa";
 import connectDB from "@/config/database";
 import Property from "@/models/Property";
@@ -64,6 +65,12 @@ const PropertyPage = async ({ params }) => {
         </div>
       </section>
       <PropertyImages images={property.images} />
+
+      <section className='bg-blue-50 dark:bg-black'>
+        <div className='container m-auto py-10 px-6'>
+          <PropertyReviews propertyId={property._id} />
+        </div>
+      </section>
     </>
   );
 };
