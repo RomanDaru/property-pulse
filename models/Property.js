@@ -19,6 +19,10 @@ const PropertySchema = new Schema(
     description: {
       type: String,
     },
+    views: {
+      type: Number,
+      default: 0,
+    },
     location: {
       street: {
         type: String,

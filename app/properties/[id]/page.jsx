@@ -11,6 +11,7 @@ import connectDB from "@/config/database";
 import Property from "@/models/Property";
 import { convertToSerializeableObject } from "@/utils/convertToSerializeableObject";
 import dynamic from "next/dynamic";
+import PropertyViewCounter from "@/components/PropertyViewCounter";
 
 const PropertyPage = async ({ params }) => {
   // NOTE: No need for making a fetch request here to our API routes, we can
@@ -41,6 +42,8 @@ const PropertyPage = async ({ params }) => {
 
   return (
     <>
+      {/* Invisible component that increments the view count */}
+      <PropertyViewCounter propertyId={property._id} />
       <PropertyHeaderImage image={property.images[0]} />
       <section>
         <div className='container m-auto py-6 px-6'>
