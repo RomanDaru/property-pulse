@@ -1,4 +1,5 @@
 import { Schema, model, models } from "mongoose";
+import Review from "./Review";
 
 const PropertySchema = new Schema(
   {
@@ -83,8 +84,43 @@ const PropertySchema = new Schema(
   },
   {
     timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
   }
 );
+
+// Virtual field for reviews
+PropertySchema.virtual("reviews", {
+  ref: "Review",
+  localField: "_id",
+  foreignField: "property",
+  justOne: false,
+});
+
+// Static method to get average rating
+PropertySchema.statics.getAverageRating = async function (propertyId) {
+  const obj = await this.aggregate([
+    {
+      $match: { _id: propertyId },
+    },
+    {
+      $lookup: {
+        from: "reviews",
+        localField: "_id",
+        foreignField: "property",
+        as: "reviews",
+      },
+    },
+    {
+      $project: {
+        averageRating: { $avg: "$reviews.rating" },
+        reviewCount: { $size: "$reviews" },
+      },
+    },
+  ]);
+
+  return obj[0] || { averageRating: 0, reviewCount: 0 };
+};
 
 const Property = models.Property || model("Property", PropertySchema);
 
