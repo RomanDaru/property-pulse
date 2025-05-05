@@ -179,7 +179,7 @@ const Message = ({ message }) => {
         </li>
       </ul>
       {/* Action Buttons (unchanged structure) */}
-      <div className='flex gap-4 mt-4'>
+      <div className='flex gap-2 mt-4'>
         <button
           onClick={handleReadClick}
           className={` ${
@@ -189,12 +189,14 @@ const Message = ({ message }) => {
           } py-1 px-3 rounded-md`}>
           {isRead ? "Mark As New" : "Mark As Read"}
         </button>
-        <button
-          onClick={handleReplyClick}
-          // Maybe change color to distinguish from Mark as Read/New
-          className=' bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-md'>
-          Reply
-        </button>
+        {/* Only show Reply button if message hasn't been replied to */}
+        {!hasBeenReplied && (
+          <button
+            onClick={handleReplyClick}
+            className='bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-md'>
+            Reply
+          </button>
+        )}
         <button
           onClick={handleDeleteClick}
           className='bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded-md'>
