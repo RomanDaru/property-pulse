@@ -35,6 +35,19 @@ const MessageSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    isReply: {
+      type: Boolean,
+      default: false,
+    },
+    replyTo: {
+      type: Schema.Types.ObjectId,
+      ref: "Message",
+      default: null,
+    },
+    hasReply: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,
