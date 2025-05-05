@@ -14,7 +14,7 @@ import { convertToSerializeableObject } from "@/utils/convertToSerializeableObje
 // route handler as it's no longer used.
 
 const SearchResultsPage = async ({
-  searchParams: { location, propertyType },
+  searchParams: { location, propertyType, sortBy = "" },
 }) => {
   await connectDB();
 
@@ -38,14 +38,74 @@ const SearchResultsPage = async ({
     query.type = typePattern;
   }
 
-  const propertiesQueryResults = await Property.find(query).lean();
+  // Build sort options based on sortBy parameter
+  let sortOptions = {};
+
+  switch (sortBy) {
+    case "price_asc":
+      sortOptions = {
+        "rates.monthly": 1,
+        "rates.weekly": 1,
+        "rates.nightly": 1,
+      };
+      break;
+    case "price_desc":
+      sortOptions = {
+        "rates.monthly": -1,
+        "rates.weekly": -1,
+        "rates.nightly": -1,
+      };
+      break;
+    case "beds_desc":
+      sortOptions = { beds: -1 };
+      break;
+    case "baths_desc":
+      sortOptions = { baths: -1 };
+      break;
+    default:
+      sortOptions = { createdAt: -1 }; // Default sort by newest
+  }
+
+  // Handle special case for rating sort
+  let propertiesQueryResults;
+
+  if (sortBy === "rating_desc") {
+    // Use aggregation to get average ratings
+    propertiesQueryResults = await Property.aggregate([
+      {
+        $match: query,
+      },
+      {
+        $lookup: {
+          from: "reviews",
+          localField: "_id",
+          foreignField: "property",
+          as: "reviews",
+        },
+      },
+      {
+        $addFields: {
+          averageRating: { $avg: "$reviews.rating" },
+        },
+      },
+      {
+        $sort: { averageRating: -1 },
+      },
+    ]);
+  } else {
+    // Normal sort
+    propertiesQueryResults = await Property.find(query)
+      .sort(sortOptions)
+      .lean();
+  }
+
   const properties = propertiesQueryResults.map(convertToSerializeableObject);
 
   return (
     <>
       <section className='bg-blue-700 py-4'>
         <div className='max-w-7xl mx-auto px-4 flex flex-col items-start sm:px-6 lg:px-8'>
-          <PropertySearchForm />
+          <PropertySearchForm includeSort={true} />
         </div>
       </section>
       <section className='px-4 py-6'>

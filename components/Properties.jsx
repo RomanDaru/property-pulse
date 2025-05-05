@@ -4,36 +4,58 @@ import PropertyCard from "@/components/PropertyCard";
 import Spinner from "@/components/Spinner";
 import Pagination from "@/components/Pagination";
 
-const Properties = () => {
-  const [properties, setProperties] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(6);
-  const [totalItems, setTotalItems] = useState(0);
+const Properties = ({
+  properties: initialProperties = [],
+  total: initialTotal = 0,
+  page: initialPage = 1,
+  pageSize: initialPageSize = 6,
+  initialSortBy = "",
+}) => {
+  const [properties, setProperties] = useState(initialProperties);
+  const [loading, setLoading] = useState(!initialProperties.length);
+  const [page, setPage] = useState(initialPage);
+  const [pageSize] = useState(initialPageSize);
+  const [totalItems, setTotalItems] = useState(initialTotal);
+  const [sortBy] = useState(initialSortBy);
 
+  // Update properties when initialProperties or initialSortBy changes
   useEffect(() => {
-    const fetchProperties = async () => {
-      try {
-        const res = await fetch(
-          `/api/properties?page=${page}&pageSize=${pageSize}`
-        );
+    if (initialProperties.length > 0) {
+      setProperties(initialProperties);
+      setLoading(false);
+    }
+  }, [initialProperties]);
 
-        if (!res.ok) {
-          throw new Error("Failed to fetch data");
+  // Fetch properties when page changes or when we need to load more
+  useEffect(() => {
+    // Only fetch if we don't have initial properties or if the page has changed
+    if (initialProperties.length === 0 || page !== initialPage) {
+      const fetchProperties = async () => {
+        try {
+          setLoading(true);
+          const res = await fetch(
+            `/api/properties?page=${page}&pageSize=${pageSize}${
+              sortBy ? `&sortBy=${sortBy}` : ""
+            }`
+          );
+
+          if (!res.ok) {
+            throw new Error("Failed to fetch data");
+          }
+
+          const data = await res.json();
+          setProperties(data.properties);
+          setTotalItems(data.total);
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setLoading(false);
         }
+      };
 
-        const data = await res.json();
-        setProperties(data.properties);
-        setTotalItems(data.total);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProperties();
-  }, [page, pageSize]);
+      fetchProperties();
+    }
+  }, [page, pageSize, sortBy, initialProperties.length, initialPage]);
 
   const handlePageChange = (newPage) => {
     setPage(newPage);

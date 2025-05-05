@@ -1,5 +1,5 @@
 import React from "react";
-import PropertySearchForm from "./PropertySearchForm";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -13,7 +13,11 @@ const Hero = () => {
             Discover the perfect property that suits your needs.
           </p>
         </div>
-        <PropertySearchForm />
+        <Link
+          href='/properties'
+          className='inline-block bg-white text-blue-700 dark:bg-purple-700 dark:text-white font-bold rounded-lg px-6 py-3 mt-4 hover:bg-gray-100 dark:hover:bg-purple-600'>
+          Browse Properties
+        </Link>
       </div>
     </section>
   );
