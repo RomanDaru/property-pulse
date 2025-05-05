@@ -10,18 +10,86 @@ export const GET = async (request) => {
 
     const page = request.nextUrl.searchParams.get("page") || 1;
     const pageSize = request.nextUrl.searchParams.get("pageSize") || 6;
+    const sortBy = request.nextUrl.searchParams.get("sortBy") || "";
 
     const skip = (page - 1) * pageSize;
 
+    // Build sort options based on sortBy parameter
+    let sortOptions = {};
+
+    switch (sortBy) {
+      case "price_asc":
+        sortOptions = {
+          "rates.monthly": 1,
+          "rates.weekly": 1,
+          "rates.nightly": 1,
+        };
+        break;
+      case "price_desc":
+        sortOptions = {
+          "rates.monthly": -1,
+          "rates.weekly": -1,
+          "rates.nightly": -1,
+        };
+        break;
+      case "rating_desc":
+        // For rating, we'll need to use aggregation pipeline
+        break;
+      case "beds_desc":
+        sortOptions = { beds: -1 };
+        break;
+      case "baths_desc":
+        sortOptions = { baths: -1 };
+        break;
+      default:
+        sortOptions = { createdAt: -1 }; // Default sort by newest
+    }
+
     const total = await Property.countDocuments({});
-    const properties = await Property.find({}).skip(skip).limit(pageSize);
+    // Handle special case for rating sort
+    if (sortBy === "rating_desc") {
+      // Use aggregation to get average ratings
+      const properties = await Property.aggregate([
+        {
+          $lookup: {
+            from: "reviews",
+            localField: "_id",
+            foreignField: "property",
+            as: "reviews",
+          },
+        },
+        {
+          $addFields: {
+            averageRating: { $avg: "$reviews.rating" },
+          },
+        },
+        {
+          $sort: { averageRating: -1 },
+        },
+        {
+          $skip: skip,
+        },
+        {
+          $limit: parseInt(pageSize),
+        },
+      ]);
 
-    const result = {
-      total,
-      properties,
-    };
+      return Response.json({
+        total,
+        properties,
+      });
+    } else {
+      // Normal sort
+      const properties = await Property.find({})
+        .sort(sortOptions)
+        .skip(skip)
+        .limit(parseInt(pageSize));
 
-    return Response.json(result);
+      return Response.json({
+        total,
+        properties,
+      });
+    }
   } catch (error) {
     console.log(error);
     return new Response("Something Went Wrong", { status: 500 });
