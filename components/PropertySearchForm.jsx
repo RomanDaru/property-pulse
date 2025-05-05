@@ -75,7 +75,7 @@ const PropertySearchForm = ({ includeSort = true }) => {
 
   return (
     <form onSubmit={handleSubmit} className='mx-auto max-w-2xl w-full'>
-      <h2 className='text-2xl font-bold text-center mb-4 text-white'>
+      <h2 className='text-2xl font-bold text-center mb-2 text-white'>
         Search:
       </h2>
       <div className='flex flex-col md:flex-row items-center'>
